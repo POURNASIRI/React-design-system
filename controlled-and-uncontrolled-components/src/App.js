@@ -1,7 +1,9 @@
 // import { useState } from "react";
 // import { ControlledModal } from "./components/controlled-modal";
 // import { UncontrolledModal } from "./components/uncontrolled-modal";
-import { UncontrolledFlow } from "./components/uncontrolled-flow";
+import { useState } from "react";
+// import { UncontrolledFlow } from "./components/uncontrolled-flow";
+import { ControlledFlow } from "./components/controlled-flow";
 
 
 const StepOne = ({ next }) => {
@@ -16,7 +18,7 @@ const StepTwo = ({ next }) => {
   return (
     <>
       <h1>Step #2: Enter your age</h1>
-      <button onClick={() => next({ age: 23 })}>Next</button>
+      <button onClick={() => next({ age: 30 })}>Next</button>
     </>
   );
 };
@@ -28,12 +30,30 @@ const StepThree = ({ next }) => {
     </>
   );
 };
+const StepFour = ({ next }) => {
+  return (
+    <>
+      <h1>Step #4: Enter your country</h1>
+      <button onClick={() => next({ country: "Poland" })}>Next</button>
+    </>
+  );
+};
 
 
 
 
 function App() {
   // const [showModal, setShowModal] = useState(false);
+
+
+
+  const [data, setData] = useState({});
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+
+  const next = (dataFromStep) => {
+    setData(dataFromStep);
+    setCurrentStepIndex(currentStepIndex + 1);
+  };
 
   return (
     <>
@@ -59,15 +79,35 @@ function App() {
 
       {/* Uncontrolled Flow */}
         {/* uncontrolled flow because we are not going to be able to access its features directly  and our accessability is very littel */}
-    <UncontrolledFlow onDone={(data) => {
+    {/* <UncontrolledFlow onDone={(data) => {
       console.log(data);
       alert("Onboarding Flow Done!");
     }}>
         <StepOne/>
         <StepTwo/>
         <StepThree/>
-    </UncontrolledFlow>
+    </UncontrolledFlow> */}
+
+      
+
+
+{/* appling controlled flow in app.js */}
+{/* controlled Flow allow us to completly access of our steps 
+such as step 3 that you can see when user age less than 25 we can hide this step and another accessabilty such as  */}
+
+      <ControlledFlow currentStepIndex={currentStepIndex} onNext={next}>
+        <StepOne />
+        <StepTwo />
+        {data.age > 25 && <StepThree />}
+        <StepFour />
+      </ControlledFlow>
+
+
+
     </>
+
+
+
   );
 }
 
