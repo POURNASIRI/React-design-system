@@ -1,36 +1,54 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+export const updateDataWithHoc = (Component, userId) => {
+  return (props) => {
+    // initial state for initial user that fetch for first time 
+    const [user, setUser] = useState(null);
+
+    // state for update user after edit
+    const [updatableUser, setUpdatableUser] = useState(null);
 
 
-export const updateDataWithHoc = (Component,userId)=>{
-    return(props)=>{
-        // this state for keeping the users info that get from server
-        const[initialUser,setInitialUser] = useState(null)
+    // fetch user for first time
+    useEffect(() => {
+      (async () => {
+        const response = await axios.get(`/users/${userId}`);
+        console.log(response.data);
+        setUser(response.data);
+        setUpdatableUser(response.data);
+      })();
+    }, []);
 
-        // this state for updating the user info
-        const [user,setUser] = useState(null)
 
-        // for fetching data from server
-        useEffect(()=>{
-            (async()=>{
-                const response = await axios.get(`/users/${userId}`)
-                setInitialUser(response.data)
-                setUser(response.data)
-            })()
-        },[])
+    // update user
+    const userChangeHandler = (updates) => {
+      setUpdatableUser({ ...updatableUser, ...updates });
+    };
 
-        // for updating the user
-        const onchangeUser = (updateUser)=>{
-            setUser({...user,...updateUser})
-        }
 
-        // for posting the user
-        const onPostUser = async ()=>{
-            const response = await axios.post(`/users/${userId}`,user)
-            setInitialUser(response.data)
-            setUser(response.data)
-        }
+    // post user
+    const userPostHandler = async () => {
+      const response = await axios.post(`/users/${userId}`, {
+        user: updatableUser,
+      });
+      setUser(response.data);
+      setUpdatableUser(response.data);
+    };
 
-        return <Component {...props} user={user} onchangeUser={onchangeUser} onPostUser={onPostUser}  />
-    }
-}
+    // reset user
+    const resetUserHandler = () => {
+      setUpdatableUser(user);
+    };
+
+    return (
+      <Component
+      {...props}
+      updatableUser={updatableUser}
+      changeHandler={userChangeHandler}
+      userPostHandler={userPostHandler}
+      resetUserHandler={resetUserHandler}
+      />
+    );
+  };
+};

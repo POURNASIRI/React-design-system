@@ -17,16 +17,28 @@
 // export default App;
 
 
-import {UserInfo} from "./components/user-info";
-import { hocFetchingData, } from "./components/hoc-fetching-data";
 
 
-const UserInfoWithUser = hocFetchingData(UserInfo, 2)
+// import {UserInfo} from "./components/user-info";
+// import { hocFetchingData, } from "./components/hoc-fetching-data";
+
+
+// const UserInfoWithUser = hocFetchingData(UserInfo, 2)
+
+// function App() {
+//   return (
+//     <>
+//       <UserInfoWithUser/>
+//     </>
+//   );
+// }
+
+import {UserForm} from "./components/user-form";
 
 function App() {
   return (
     <>
-      <UserInfoWithUser/>
+      <UserForm/>
     </>
   );
 }
