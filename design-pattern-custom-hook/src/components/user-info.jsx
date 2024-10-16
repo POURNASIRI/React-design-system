@@ -1,7 +1,9 @@
-import { useCurrentUser } from "./useCurrentUser";
+// import { useCurrentUser } from "./useCurrentUser";
+
+import { useUser } from "./useUser";
 
 export const UserInfo = () => {
-  const user = useCurrentUser();
+  const user = useUser("3");
   const { name, age, country, books } = user || {};
   console.log(user);
   return user ? (
