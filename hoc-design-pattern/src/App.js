@@ -33,12 +33,14 @@
 //   );
 // }
 
-import {UserForm} from "./components/user-form";
+import { ResourceForm } from "./components/resource-form";
+// import {UserForm} from "./components/user-form";
 
 function App() {
   return (
     <>
-      <UserForm/>
+      {/* <UserForm/> */}
+      <ResourceForm/>
     </>
   );
 }
