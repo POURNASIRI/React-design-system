@@ -1,11 +1,12 @@
 // import { useCurrentUser } from "./useCurrentUser";
 
-import { useUser } from "./useUser";
+import { useResourse } from "./useresourse";
+// import { useUser } from "./useUser";
 
-export const UserInfo = () => {
-  const user = useUser("3");
+export const UserInfo = ({id}) => {
+  const user = useResourse(`/users/${id}`);
   const { name, age, country, books } = user || {};
-  console.log(user);
+  // console.log(user);
   return user ? (
     <>
       <h2>{name}</h2>

@@ -1,4 +1,9 @@
-export const BookInfo = ({ book }) => {
+import { useResourse } from "./useresourse";
+
+
+
+export const BookInfo = ({id}) => {
+  const book = useResourse(`/books/${id}`);
   const { name, price, title, pages } = book || {};
 
   return book ? (
