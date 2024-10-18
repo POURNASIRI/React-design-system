@@ -1,9 +1,11 @@
-// import { useCurrentUser } from "./useCurrentUser";
-// import { useUser } from "./useUser";
-import { useResourse } from "./useresourse";
+import { useCallback } from "react";
+import { useDataSource } from "./data-source-hook";
+import { fetchData } from "../lib/fetchData";
 
-export const UserInfo = ({id}) => {
-  const user = useResourse(`/users/${id}`);
+
+export const UserInfoWithDataSource = ({id}) => {
+    const getData = useCallback(()=>fetchData(`/users/${id}`),[id])
+  const user = useDataSource(getData)
   const { name, age, country, books } = user || {};
 
   return user ? (

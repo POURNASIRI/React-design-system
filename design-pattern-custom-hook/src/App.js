@@ -1,11 +1,13 @@
-import { BookInfo } from "./components/book-info";
-import { UserInfo } from "./components/user-info";
+// import { BookInfo } from "./components/book-info";
+import { BookInfoWithDataSource } from "./components/book-info-with-data-source";
+import { UserInfoWithDataSource } from "./components/user-info-with-data-source";
+// import { UserInfo } from "./components/user-info";
 
 function App() {
   return (
     <>
-      <UserInfo id={1} />
-      <BookInfo id={3}/>
+    <BookInfoWithDataSource id={3}/>
+    <UserInfoWithDataSource id={2}/>
     </>
   );
 }
