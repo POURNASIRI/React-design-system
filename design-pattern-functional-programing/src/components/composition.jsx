@@ -1,9 +1,10 @@
-export const Button = ({text, size, color,...props})=>{
+export const Button = ({text, size,borderRadius, color,...props})=>{
     
     return(
         <button style={{
             fontSize: size === "small" ? "16px" : "32px",
-            backgroundColor: color
+            backgroundColor: color,
+            borderRadius: borderRadius
         }}>
             {text}
         </button>

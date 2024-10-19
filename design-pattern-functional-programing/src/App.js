@@ -1,5 +1,7 @@
-import { GreenButton, RedButton } from "./components/composition";
+// import { GreenButton, RedButton } from "./components/composition";
 // import { Recursive } from "./components/recursive";
+
+import { GreenButton, RedButton } from "./components/partial";
 
 
 // !for recursive example
@@ -23,10 +25,16 @@ function App() {
 
 
       {/* //!composition component pattern */}
-      <RedButton text={"red button"} />
-      <GreenButton text={"green button"} size={"small"}/>
+      {/* <RedButton text={"red button"} />
+      <GreenButton text={"green button"} size={"small"}/> */}
+
+
+      {/* //! partial component pattern */}
+      <RedButton text={"RED Button"}/>
+      <GreenButton text={"GRREN Button"}/>
     </>
   );
 }
 
 export default App;
+ 
