@@ -4,6 +4,8 @@ import { Button } from './components/button';
 import { ModalDialog } from './components/modal-dialog';
 import { useState } from 'react';
 
+//! when click on open dialog button, modal dialog will appear with dellay of 5 seconds we whant to see why that is happening
+
 export default function App() {
   const [visible, setVisible] = useState(false);
   return (
