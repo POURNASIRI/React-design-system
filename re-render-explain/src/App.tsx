@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 //! when click on open dialog button, modal dialog will appear with dellay of 5 seconds we whant to see why that is happening
 
+//* when you click the button or when you click the close on the modal dialog,so consequently, opening the dialog takes almost a second because react has to rerender everything before the dialog can show up on the screen again.
 export default function App() {
   const [visible, setVisible] = useState(false);
   return (
