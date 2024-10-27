@@ -8,8 +8,18 @@
 
 import { ReactElement } from 'react';
 
-const Button = ({ icon }: { icon: ReactElement }) => {
-    return <button>submit {icon}</button>
+const Button = ({
+  icon,
+  size = '10px',
+  color = 'green',
+}: {
+  icon: ReactElement;
+  size?: string;
+  color?: string;
+}) => {
+  return (
+    <button style={{ fontSize: size, background: color }}>submit {icon}</button>
+  );
 };
 
 export default Button;
