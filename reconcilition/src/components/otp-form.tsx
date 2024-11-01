@@ -20,11 +20,11 @@ const Input = styled.input`
   box-sizing: border-box;
 `;
 
-const Span = styled.span`
-  display: block;
-  margin-bottom: 1rem;
-  color: #555;
-`;
+// const Span = styled.span`
+//   display: block;
+//   margin-bottom: 1rem;
+//   color: #555;
+// `;
 
 const Button = styled.button<{ received: boolean }>`
   padding: 0.5rem 1rem;
@@ -40,7 +40,6 @@ const Button = styled.button<{ received: boolean }>`
 `;
 //! expalin this component issue: when we write email address input and accept checkbox input field value is not remove and its remain why this happen?                          ANSWER👇
 
-
 const OTP = () => {
   const [received, setReceived] = useState(false);
   return (
@@ -49,12 +48,23 @@ const OTP = () => {
         <Checkbox id='otp-checkbox' onChange={() => setReceived(!received)} />
         <label htmlFor='otp-checkbox'>I received the OTP</label>
       </CheckboxWrapper>
-
-      {received ? (
+      {/* //! this is wrong way */}
+      
+      {/* {received ? (
         <Input id='otp-code' placeholder='Enter the otp code here' />
       ) : (
         <Input id='otp-code' placeholder='Enter your Email address here' />
-      )}
+      )} */}
+
+
+      {/* //* this is right way */}
+      {received ? (
+        <Input id='otp-code' placeholder='Enter the otp code here' />
+      ) : null}
+      {!received ? (
+        <Input id='otp-code' placeholder='Enter your Email address here' />
+      ) : null}
+
       <Button received={received}>
         {received ? 'Submit OTP' : 'Send me OTP'}
       </Button>
@@ -64,14 +74,13 @@ const OTP = () => {
 
 export default OTP;
 
-
 //** answer:React will see this inputs in here whenevert the state is false like this object */
 
 // before the re render
 //* {
 //* type:Input,
 //* ...// rest of the stuff like id , placeholder
-//*} 
+//*}
 
 //** when you click checkbox and change this state from false to true rect display second input and second object */
 
@@ -82,3 +91,5 @@ export default OTP;
 //*}
 
 //* as you can see both types in here are the input which means for react that we are not going to unmount a new element or component, its just the same one, but we are going to just update it. so its going to keep whenever we are false, we have this object. its going to keep everything associated with it, including the text that we enter.
+
+//! please red README.md file for more details 
