@@ -1,14 +1,8 @@
-// import OTP from "./components/otp-form";
 
-// export default function App() {
-//   return (
-//     <>
-//       <OTP />
-//     </>
-//   );
-// }
 
 // **anti-pattern
+
+//** to show this code go to index.js and run App component */
 
 import React from 'react';
 import { useState } from 'react';
