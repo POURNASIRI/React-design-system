@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 
 const Context = createContext({
   collapsed: false,
@@ -8,13 +15,11 @@ export const useNav = () => useContext(Context);
 
 const NavController = ({ children }: { children: ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const toggle = () => setCollapsed(!collapsed);
+  const toggle = useCallback(() => setCollapsed(!collapsed), [collapsed]);
 
-  return (
-    <Context.Provider value={{ collapsed, toggle }}>
-      {children}
-    </Context.Provider>
-  );
+  const value = useMemo(() => ({ collapsed, toggle }), [collapsed, toggle]);
+
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
 export default NavController;
