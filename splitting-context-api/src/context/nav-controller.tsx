@@ -38,3 +38,4 @@ const NavController = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default NavController;
+
