@@ -98,5 +98,59 @@ const Form = () => {
 export default Form;
 ```
 
-
 In the above code if we type a again . as you can see now we arw loggin the `ref.current` new value and initial value, So this means that `ref.current` because technically we are just updating a object, So its synchronouse.
+
+## When should we use Ref ?
+
+the most common use case of ref is whenever you want to assign Dom element to ref
+
+```jsx
+import { ChangeEvent, useRef, useState } from 'react';
+
+const Form2 = () => {
+  const [username, setUsername] = useState('');
+  const [, setPassword] = useState('');
+
+  const ref = useRef < HTMLInputElement > null;
+
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === 'username') {
+      setUsername(value);
+    } else {
+      setPassword(value);
+    }
+  };
+
+  const submit = () => {
+    if (username.length < 1) {
+      //focus on the username input
+      ref.current?.focus();
+    } else {
+      //submit data to server
+    }
+  };
+
+  return (
+    <>
+      <input type='text' name='username' ref={ref} onChange={changeHandler} />
+      <input type='password' name='password' onChange={changeHandler} />
+      <button onClick={submit}>submit</button>
+    </>
+  );
+};
+export default Form2;
+```
+
+In the above code when use forget fill the usename input field and then push submit button, usename input field automaticlly will be focus.
+
+```jsx
+  const submit = () => {
+    if (username.length < 1) {
+      //focus on the username input
+      ref.current?.focus();
+    } else {
+      //submit data to server
+    }
+  };
+  ```

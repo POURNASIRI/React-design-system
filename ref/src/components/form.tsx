@@ -1,7 +1,7 @@
 import { ChangeEvent, useRef, useState } from "react";
 
 const Form = () => {
-  // const [value, setValue] = useState("");
+  const [value, setValue] = useState("");
   const ref = useRef("");
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
