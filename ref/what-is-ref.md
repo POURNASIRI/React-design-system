@@ -145,12 +145,47 @@ export default Form2;
 In the above code when use forget fill the usename input field and then push submit button, usename input field automaticlly will be focus.
 
 ```jsx
-  const submit = () => {
-    if (username.length < 1) {
-      //focus on the username input
-      ref.current?.focus();
-    } else {
-      //submit data to server
-    }
-  };
-  ```
+const submit = () => {
+  if (username.length < 1) {
+    //focus on the username input
+    ref.current?.focus();
+  } else {
+    //submit data to server
+  }
+};
+```
+
+## Ref as props:
+
+- you cannot use the ref keyword as onne of your props in a functional component because its reserved.
+
+### Input Component:
+
+```jsx
+import React, { RefObject } from 'react';
+
+function Input({
+  changeHandler,
+  inputRef,
+}: {
+  changeHandler: (val: string) => void,
+  inputRef: RefObject<HTMLInputElement>,
+}) {
+  return (
+    <input
+      type='text'
+      name='username'
+      ref={inputRef}
+      onChange={(e) => changeHandler(e.target.value)}
+    />
+  );
+}
+
+export default Input;
+```
+
+### pass ref to input component as props in Form component:
+
+```jsx
+<Input changeHandler={setUsername} inputRef={ref} />
+```
