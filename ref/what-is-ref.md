@@ -189,3 +189,35 @@ export default Input;
 ```jsx
 <Input changeHandler={setUsername} inputRef={ref} />
 ```
+
+### forwardRef:
+
+- The forward ref is just a wrapper around our component that allows us to receive props and a ref
+
+```jsx
+import React, { ForwardedRef, forwardRef } from 'react';
+
+type Props = {
+  changeHandler: (value: string) => void,
+};
+
+function Input(props: Props, ref: ForwardedRef<HTMLInputElement>) {
+  const { changeHandler } = props;
+  return (
+    <input
+      type='text'
+      name='username'
+      ref={ref}
+      onChange={(e) => changeHandler(e.target.value)}
+    />
+  );
+}
+
+export default forwardRef(Input);
+```
+
+In the above code we using forward ref, Now in the Form component we can pas ref
+
+```jsx
+<Input changeHandler={setUsername} ref={ref} />
+```

@@ -27,7 +27,7 @@ const Form2 = () => {
 
   return (
     <>
-      <Input changeHandler={setUsername} inputRef={ref} />
+      <Input changeHandler={setUsername} ref={ref} />
       <input type='password' name='password' onChange={changeHandler} />
       <button onClick={submit}>submit</button>
     </>

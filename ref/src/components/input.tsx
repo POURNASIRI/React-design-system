@@ -1,20 +1,19 @@
-import React, { RefObject } from 'react';
+import React, { ForwardedRef, forwardRef } from 'react';
 
-function Input({
-  changeHandler,
-  inputRef,
-}: {
-  changeHandler: (val: string) => void;
-  inputRef: RefObject<HTMLInputElement>;
-}) {
+type Props = {
+  changeHandler: (value: string) => void;
+};
+
+function Input(props: Props, ref: ForwardedRef<HTMLInputElement>) {
+  const { changeHandler } = props;
   return (
     <input
       type='text'
       name='username'
-      ref={inputRef}
+      ref={ref}
       onChange={(e) => changeHandler(e.target.value)}
     />
   );
 }
 
-export default Input;
+export default forwardRef(Input);
